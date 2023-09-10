@@ -23,12 +23,16 @@ pipeline {
       }
     }
 
-    stage ('Dependency track') {
+    /* stage ('Dependency track') {
         when { branch DEFAULT_BRANCH }
           steps {
             // First generate Bill of Materials
             sh './gradlew cyclonedxBom -info'
-            // Then ingest results to dependency track platform
+          }
+    }*/
+    stage ('Load Dependency Track') {
+    steps {
+        //ingest results to dependency track platform
             withCredentials([string(credentialsId: 'dependency-track-api-key-global', variable: 'API_KEY')])
             {
               dependencyTrackPublisher artifact:'build/reports/bom.xml', projectName:"${env.APP_NAME}", projectVersion:"${env.APP_VERSION}", synchronous:true, dependencyTrackApiKey:"${API_KEY}"

@@ -163,10 +163,10 @@ jacocoTestReport {
             xml.required = true
             html.required = true
             csv.required = false
-            xml.outputLocation = file("${buildDir}/reports/jacoco.xml")
+            // xml.outputLocation = file("${buildDir}/reports/jacoco.xml")
     }
 }
 
-cyclonedxBom {
-    destination = file("target/")
+tasks.cyclonedxBom {
+    setDestination(project.file("target"))
 }
