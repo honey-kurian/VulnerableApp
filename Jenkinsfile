@@ -19,9 +19,7 @@ pipeline {
     }
     stage("Gradle Build") {
       steps {
-        trace('Building ...') {
-            sh "./gradlew clean assemble"
-        }
+        sh "./gradlew clean assemble"
       }
     }
 
