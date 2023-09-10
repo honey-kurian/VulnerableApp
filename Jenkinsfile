@@ -33,11 +33,11 @@ pipeline {
     stage ('Load Dependency Track') {
     steps {
         //ingest results to dependency track platform
-            withCredentials([string(credentialsId: 'dependency-track-api-key-global', variable: 'API_KEY')])
-            {
-              dependencyTrackPublisher artifact:'build/reports/bom.xml', projectName:"${env.APP_NAME}", projectVersion:"${env.APP_VERSION}", synchronous:true, dependencyTrackApiKey:"${API_KEY}"
-             }
-          }
+        withCredentials([string(credentialsId: 'dependency-track-api-key-global', variable: 'API_KEY')])
+        {
+          dependencyTrackPublisher artifact:'target/bom.xml', projectName:"${env.APP_NAME}", projectVersion:"${env.APP_VERSION}", synchronous:true, dependencyTrackApiKey:"${API_KEY}"
+         }
+        }
     }
   }
 }
